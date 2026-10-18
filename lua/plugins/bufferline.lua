@@ -8,18 +8,34 @@ return {
       options = {
         mode = "buffers",
         diagnostics = "nvim_lsp",
+        diagnostics_indicator = function(count, level)
+          local icon = level:match("error") and "  " or "  "
+          return icon .. count
+        end,
         always_show_bufferline = true,
-        separator_style = "thin", -- "slant" | "slope" | "thick" | "thin"
-        show_buffer_close_icons = false,
+        separator_style = "slant", -- Kiểu vát chéo nghiêng hiện đại, đồng bộ với lualine
+        show_buffer_close_icons = true,
         show_close_icon = false,
         color_icons = true,
+        modified_icon = "●",
+        indicator = {
+          icon = "▎",
+          style = "icon",
+        },
         offsets = {
           {
             filetype = "neo-tree",
-            text = "󰙅 File Explorer",
+            text = "󰙅 CÂY THƯ MỤC",
             text_align = "center",
+            highlight = "Directory",
             separator = true,
           },
+        },
+      },
+      highlights = {
+        buffer_selected = {
+          bold = true,
+          italic = false,
         },
       },
     },
@@ -33,6 +49,7 @@ return {
       map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Đóng tab hiện tại" })
       map("n", "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", { desc = "Đóng các tab khác" })
       map("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>", { desc = "Ghim tab" })
+      map("n", "<leader>bpk", "<cmd>BufferLinePick<cr>", { desc = "Chọn nhanh tab theo chữ cái" })
     end,
   },
 }
