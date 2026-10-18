@@ -1,0 +1,17 @@
+# OS / Editor temporary files
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*~
+
+# Test & binaries
+*.exe
+*.o
+*.out
+
+# Windows / Mac metadata
+Thumbs.db
+.DS_Store
+desktop.ini
