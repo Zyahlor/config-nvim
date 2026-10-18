@@ -24,13 +24,17 @@ return {
         local line = vim.api.nvim_buf_get_lines(buf, row, row + 1, false)[1] or ""
         if line ~= "" and not line:match("^%s*[A-Za-z]:[/\\]") and not line:match("^%s*󰙅") then
           local s = (line:find("%S") or 1) - 1
+          -- Đổi màu toàn bộ khối chữ và icon sang nền Xanh Dương, CHỮ ĐEN ĐẬM chuẩn NORMAL (priority 4096)
           pcall(vim.api.nvim_buf_set_extmark, buf, arrow_ns, row, s, {
             end_col = #line,
             hl_group = "NeoTreeNormalPill",
-            hl_mode = "replace",
-            priority = 200,
+            priority = 4096,
+          })
+          -- Đặt mũi tên nhọn  ở ngay đuôi của tên file
+          pcall(vim.api.nvim_buf_set_extmark, buf, arrow_ns, row, #line, {
             virt_text = { { "", "NeoTreeNormalPillArrow" } },
             virt_text_pos = "inline",
+            priority = 4096,
           })
         end
       end
