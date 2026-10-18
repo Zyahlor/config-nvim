@@ -29,3 +29,8 @@ map("t", "<C-h>", [[<C-\><C-N><C-w>h]], { desc = "Sang khung trái" })
 map("t", "<C-j>", [[<C-\><C-N><C-w>j]], { desc = "Sang khung dưới" })
 map("t", "<C-k>", [[<C-\><C-N><C-w>k]], { desc = "Sang khung trên" })
 map("t", "<C-l>", [[<C-\><C-N><C-w>l]], { desc = "Sang khung phải" })
+
+-- Chuyển đổi và đóng Tab / Buffer
+map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Tab kế tiếp" })
+map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Tab trước đó" })
+map("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Đóng tab hiện tại" })
