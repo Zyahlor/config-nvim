@@ -13,14 +13,13 @@ return {
           return icon .. count
         end,
         always_show_bufferline = true,
-        separator_style = "slant", -- Kiểu vát chéo nghiêng hiện đại, đồng bộ với lualine
-        show_buffer_close_icons = true,
+        separator_style = { "", "" }, -- Khối mũi tên Powerline như Lualine
+        show_buffer_close_icons = false,
         show_close_icon = false,
         color_icons = true,
         modified_icon = "●",
         indicator = {
-          icon = "▎",
-          style = "icon",
+          style = "none",
         },
         offsets = {
           {
@@ -33,9 +32,46 @@ return {
         },
       },
       highlights = {
+        fill = {
+          bg = "#16161e",
+        },
+        background = {
+          fg = "#a9b1d6",
+          bg = "#1f2335",
+        },
         buffer_selected = {
+          fg = "#1a1b26",
+          bg = "#7aa2f7",
           bold = true,
           italic = false,
+        },
+        buffer_visible = {
+          fg = "#c0caf5",
+          bg = "#1f2335",
+        },
+        separator_selected = {
+          fg = "#7aa2f7",
+          bg = "#16161e",
+        },
+        separator_visible = {
+          fg = "#1f2335",
+          bg = "#16161e",
+        },
+        separator = {
+          fg = "#1f2335",
+          bg = "#16161e",
+        },
+        modified_selected = {
+          fg = "#1a1b26",
+          bg = "#7aa2f7",
+        },
+        modified = {
+          fg = "#ff9e64",
+          bg = "#1f2335",
+        },
+        modified_visible = {
+          fg = "#ff9e64",
+          bg = "#1f2335",
         },
       },
     },

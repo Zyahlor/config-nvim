@@ -8,6 +8,21 @@ return {
       "MunifTanjim/nui.nvim",
     },
     config = function()
+      -- Định nghĩa màu cho mũi tên Lualine trên file đang chọn trong cây thư mục
+      vim.api.nvim_set_hl(0, "NeoTreeActiveArrow", { fg = "#7aa2f7", bold = true })
+      vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = "#7aa2f7", bold = true })
+
+      local function get_active_editor_file()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          local ft = vim.bo[buf].filetype
+          if ft ~= "neo-tree" and ft ~= "" then
+            return vim.fs.normalize(vim.api.nvim_buf_get_name(buf))
+          end
+        end
+        return ""
+      end
+
       require("neo-tree").setup({
         close_if_last_window = true,
         window = {
@@ -22,6 +37,32 @@ return {
           },
           filtered_items = {
             hide_dotfiles = false,
+          },
+          components = {
+            lualine_arrow = function(config, node, state)
+              local active_file = get_active_editor_file()
+              if active_file ~= "" and vim.fs.normalize(node.path) == active_file then
+                return {
+                  text = " ",
+                  highlight = "NeoTreeActiveArrow",
+                }
+              end
+              return {}
+            end,
+          },
+        },
+        renderers = {
+          file = {
+            { "indent" },
+            { "icon" },
+            {
+              "name",
+              use_git_status_colors = true,
+              zindex = 10,
+            },
+            { "lualine_arrow", zindex = 15 },
+            { "diagnostics", errors_only = true, zindex = 20 },
+            { "git_status", zindex = 20 },
           },
         },
       })
