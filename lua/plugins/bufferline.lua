@@ -13,7 +13,7 @@ return {
           return icon .. count
         end,
         always_show_bufferline = true,
-        separator_style = { "", "" }, -- Khối mũi tên Powerline như Lualine
+        separator_style = "slant",
         show_buffer_close_icons = false,
         show_close_icon = false,
         color_icons = true,
@@ -76,6 +76,10 @@ return {
       },
     },
     config = function(_, opts)
+      -- Định nghĩa ký tự kết thúc tab là hình mũi tên nhọn Powerline  giống hệt Lualine
+      local constants = require("bufferline.constants")
+      constants.sep_chars.slant = { "", "" }
+
       require("bufferline").setup(opts)
 
       -- Phím tắt chuyển tab & quản lý buffer
