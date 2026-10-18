@@ -9,8 +9,36 @@ return {
     },
     config = function()
       -- Định nghĩa màu cho mũi tên Lualine trên file đang chọn trong cây thư mục
+      local arrow_ns = vim.api.nvim_create_namespace("neotree_arrow_cursor")
       vim.api.nvim_set_hl(0, "NeoTreeActiveArrow", { fg = "#7aa2f7", bold = true })
       vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = "#7aa2f7", bold = true })
+      vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = "#24283b", bold = true })
+
+      local function update_neotree_cursor_arrow()
+        local buf = vim.api.nvim_get_current_buf()
+        if vim.bo[buf].filetype ~= "neo-tree" then return end
+        vim.api.nvim_buf_clear_namespace(buf, arrow_ns, 0, -1)
+        local cursor = vim.api.nvim_win_get_cursor(0)
+        local row = cursor[1] - 1
+        local line = vim.api.nvim_buf_get_lines(buf, row, row + 1, false)[1] or ""
+        if line ~= "" and not line:match("^%s*[A-Za-z]:[/\\]") and not line:match("^%s*󰙅") then
+          pcall(vim.api.nvim_buf_set_extmark, buf, arrow_ns, row, 0, {
+            virt_text = { { " ", "NeoTreeActiveArrow" } },
+            virt_text_pos = "eol",
+            hl_mode = "combine",
+          })
+        end
+      end
+
+      local arrow_group = vim.api.nvim_create_augroup("NeoTreeCursorArrowMarker", { clear = true })
+      vim.api.nvim_create_autocmd({ "CursorMoved", "BufEnter" }, {
+        group = arrow_group,
+        callback = function(ev)
+          if vim.bo[ev.buf].filetype == "neo-tree" then
+            vim.schedule(update_neotree_cursor_arrow)
+          end
+        end,
+      })
 
       local function get_active_editor_file()
         for _, win in ipairs(vim.api.nvim_list_wins()) do
