@@ -57,3 +57,5 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned -Force
 | `<leader>q` | Đóng cửa sổ |
 | `J` / `K` (Visual mode) | Kéo khối code bôi đen di chuyển lên / xuống |
 
+👉 **Xem bảng tra cứu toàn bộ phím tắt chi tiết tại:** [KEYMAPS.md](KEYMAPS.md)
+
