@@ -18,6 +18,13 @@ return {
           "bash",
           "markdown",
           "markdown_inline",
+          "html",
+          "css",
+          "javascript",
+          "typescript",
+          "php",
+          "go",
+          "gomod",
         },
         highlight = {
           enable = true,

@@ -32,7 +32,7 @@
 ## 🚀 3. Biên dịch & Chạy Code 1 Chạm (F5)
 | Phím tắt | Chế độ | Mô tả tác dụng |
 | :--- | :---: | :--- |
-| `<F5>` | Normal | **Biên dịch & Chạy code ngay lập tức** (Hỗ trợ C, C++, Python, Bash) mở cửa sổ ngang ở đáy |
+| `<F5>` | Normal | **Biên dịch & Chạy code ngay lập tức** (C, C++, Python, Go, JS, TS, PHP, HTML, Bash) mở cửa sổ ngang ở đáy |
 | `<leader>rr` | Normal | Phím tắt phụ thay cho F5 (chạy code) |
 
 ---

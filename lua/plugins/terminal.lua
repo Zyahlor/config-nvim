@@ -91,6 +91,16 @@ return {
           end
         elseif ft == "python" then
           cmd = is_win and string.format('python "%s"', file_name) or string.format('python3 "%s"', file_name)
+        elseif ft == "go" then
+          cmd = string.format('go run "%s"', file_name)
+        elseif ft == "javascript" then
+          cmd = string.format('node "%s"', file_name)
+        elseif ft == "typescript" then
+          cmd = string.format('npx ts-node "%s"', file_name)
+        elseif ft == "php" then
+          cmd = string.format('php "%s"', file_name)
+        elseif ft == "html" then
+          cmd = is_win and string.format('start "" "%s"', file_path) or string.format('xdg-open "%s"', file_path)
         elseif ft == "sh" or ft == "bash" then
           cmd = string.format('bash "%s"', file_name)
         else

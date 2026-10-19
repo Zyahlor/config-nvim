@@ -9,18 +9,25 @@ return {
           c = { "clang_format" },
           cpp = { "clang_format" },
           python = { "black" },
+          javascript = { "prettier" },
+          typescript = { "prettier" },
+          html = { "prettier" },
+          css = { "prettier" },
+          php = { "prettier" },
+          go = { "gofmt" },
         },
       })
 
-      vim.keymap.set({ "n", "v" }, "<leader>fm", function()
+      local format_func = function()
         conform.format({
           lsp_fallback = true,
           async = false,
-          timeout_ms = 500,
+          timeout_ms = 1000,
         })
-      end, {
-        desc = "Format Code",
-      })
+      end
+
+      vim.keymap.set({ "n", "v" }, "<leader>fm", format_func, { desc = "Định dạng code (Format)" })
+      vim.keymap.set({ "n", "v" }, "<leader>cf", format_func, { desc = "Định dạng code (Format)" })
     end,
   },
 }

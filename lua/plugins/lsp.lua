@@ -43,6 +43,11 @@ return {
           "marksman",
           "clangd",
           "pyright",
+          "html",
+          "cssls",
+          "ts_ls",
+          "intelephense",
+          "gopls",
         },
       })
     end,
