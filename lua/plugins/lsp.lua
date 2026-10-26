@@ -25,12 +25,14 @@ return {
       })
 
       -- Custom cmd cho clangd để nhận diện thư viện chuẩn C++ từ MSYS2 / GCC
+      -- Tắt hoàn toàn tự động chèn thư viện vào đầu file (--header-insertion=never)
       vim.lsp.config("clangd", {
         cmd = {
           "clangd",
           "--background-index",
           "--clang-tidy",
-          "--header-insertion=iwyu",
+          "--header-insertion=never",
+          "--header-insertion-decorators=0",
           "--completion-style=detailed",
           "--function-arg-placeholders",
           "--fallback-style=llvm",
